@@ -34,11 +34,11 @@ export function reducer(state = initialState, action: ProductActions) : ProductS
         ...state,
         showProductCode: action.payload
       };
-    case ProductActionTypes.SetCurrentProduct
+    case ProductActionTypes.SetCurrentProduct:
      return {
        ...state,
-       currentProduct: { ...action.payload };
-     };:
+       currentProduct: { ...action.payload }
+     };
 
     default:
       return state;
