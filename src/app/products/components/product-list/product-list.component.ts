@@ -22,6 +22,8 @@ export class ProductListComponent {
     this.checked.emit(value);
   }
   newProduct(): void {
+
+    console.log('Inside newProduct');
     this.initializedNewProduct.emit();
   }
   productSelected(product: Product): void {

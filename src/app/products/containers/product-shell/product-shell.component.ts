@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { Subscription, Observable } from 'rxjs';
-import * as fromProduct from '../../state/product.reducer';
+import * as fromProduct from '../../state';
 import { Product } from '../../product';
 import { ProductService } from '../../product.service';
 import { Store, select } from '@ngrx/store';
@@ -44,6 +44,7 @@ export class ProductShellComponent implements OnInit {
   }
 
   newProduct(): void {
+    console.log('Inside newProduct()');
     // this.productService.changeSelectedProduct(this.productService.newProduct());
     this.store.dispatch(new productActions.InitializeCurrentProduct());
   }
