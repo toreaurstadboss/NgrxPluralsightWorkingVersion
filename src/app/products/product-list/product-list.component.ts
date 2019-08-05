@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
-
+import * as fromProduct from '../state/product.reducer';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { Store, select } from '@ngrx/store';
@@ -23,7 +23,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   selectedProduct: Product | null;
   sub: Subscription;
 
-  constructor(private store: Store<any>,
+  constructor(private store: Store<fromProduct.State>,
               private productService: ProductService) { }
 
   ngOnInit(): void {
@@ -37,17 +37,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
     );
 
     // TODO: Unsubscribe
-    // this.store.pipe(select('products')).subscribe(
-    //   products => {
-    //     if (products) {
-    //       this.displayCode = products.showProductCode;
-    //     }
-    //   });
+    this.store.pipe(select(fromProduct.getShowProductCode)).subscribe(showProductCode => this.displayCode = showProductCode);
 
-   this.sub =  this.store.pipe(select('products')).subscribe(products => {
-      if (products) {
-        this.displayCode = products.showProductCode;
-      });
+  //  this.sub =  this.store.pipe(select('products')).subscribe((products: fromProduct.State) => {
+  //     if (products) {
+  //       this.displayCode = products.products.showProductCode;
+  //     });
 
   }
 
